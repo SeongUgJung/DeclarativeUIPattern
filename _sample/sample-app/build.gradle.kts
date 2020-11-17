@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -41,6 +43,9 @@ dependencies {
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
     implementation(Google.material)
+
+    implementation(Dagger2.hiltRuntime)
+    kapt(Dagger2.hiltCompiler)
 
     composeComponent()
 

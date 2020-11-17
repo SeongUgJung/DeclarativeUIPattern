@@ -5,41 +5,25 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.platform.setContent
-import com.declarative.ui.pattern.viewcomponents.toolbar.ToolbarViewComponent
-import com.declarative.ui.pattern.viewcomponents.toolbar.ToolbarViewModel
-import com.declarative.ui.pattern.viewcomponents.toolbar.ToolbarViewRender
-import com.declarative.ui.pattern.viewcomponents.toolbar.ToolbarViewStore
 import com.declarative.ui.pattern.ui.DeclarativeUIPatternTheme
-import com.declarative.ui.pattern.viewcomponents.RootViewComponent
-import com.declarative.ui.pattern.viewcomponents.body.BodyViewComponent
-import com.declarative.ui.pattern.viewcomponents.body.BodyViewModel
-import com.declarative.ui.pattern.viewcomponents.body.BodyViewRender
-import com.declarative.ui.pattern.viewcomponents.body.BodyViewStore
+import com.declarative.ui.pattern.viewcomponents.RootViewComponentHolder
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    @Inject lateinit var rootViewComponentHolder: RootViewComponentHolder
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val toolbarViewStore = ToolbarViewStore()
-        val toolbarViewComponent = ToolbarViewComponent(
-            ToolbarViewModel(toolbarViewStore),
-            ToolbarViewRender(toolbarViewStore)
-        )
+        rootViewComponentHolder.initialize()
 
-        val bodyViewStore = BodyViewStore()
-        val bodyViewComponent = BodyViewComponent(
-            BodyViewModel(bodyViewStore),
-            BodyViewRender(bodyViewStore)
-        )
-
-
-
-
-        val rootViewComponent = RootViewComponent(toolbarViewComponent, bodyViewComponent)
         setContent {
             DeclarativeUIPatternTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    rootViewComponent.render()
+                    rootViewComponentHolder.render()
                 }
             }
         }

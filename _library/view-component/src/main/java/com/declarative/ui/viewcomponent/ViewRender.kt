@@ -8,4 +8,8 @@ abstract class ViewRender(private val viewStore: ViewStore) {
     fun render() {
         viewStore.draw()
     }
+
+    companion object {
+        val EMPTY = object : ViewRender(ViewStore.EMPTY) {}
+    }
 }

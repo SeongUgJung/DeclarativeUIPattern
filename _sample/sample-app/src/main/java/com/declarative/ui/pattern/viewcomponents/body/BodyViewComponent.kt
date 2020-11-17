@@ -1,14 +1,13 @@
 package com.declarative.ui.pattern.viewcomponents.body
 
 import com.declarative.ui.viewcomponent.ViewComponent
-import com.declarative.ui.viewcomponent.ViewModel
-import com.declarative.ui.viewcomponent.ViewRender
+import com.declarative.ui.viewcomponent.ViewComponentController
+import com.declarative.ui.viewcomponent.ViewComponentHolder
 
 class BodyViewComponent(
     viewModel: BodyViewModel,
     viewRender: BodyViewRender,
-) : ViewComponent(viewModel, viewRender) {
+) : ViewComponent(viewModel, viewRender)
 
-    override fun isReady(): Boolean = true
-
-}
+class BodyViewComponentHolder(bodyViewComponent: BodyViewComponent) :
+    ViewComponentHolder(bodyViewComponent, ViewComponentController.EMPTY)

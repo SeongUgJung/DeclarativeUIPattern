@@ -9,7 +9,7 @@ object Kotlin {
 }
 
 object Compose {
-    const val version = "1.0.0-alpha06"
+    const val version = "1.0.0-alpha07"
 
     const val ui = "androidx.compose.ui:ui:$version"
     const val runtime = "androidx.compose.runtime:runtime:$version"
@@ -34,4 +34,12 @@ object Test {
 object AndroidTest {
     const val junit = "androidx.test.ext:junit:1.1.2"
     const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
+}
+
+object Dagger2 {
+    const val version = "2.29.1"
+    const val hiltVersion = "$version-alpha"
+    const val hiltGradle = "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
+    const val hiltRuntime = "com.google.dagger:hilt-android:$hiltVersion"
+    const val hiltCompiler = "com.google.dagger:hilt-android-compiler:$hiltVersion"
 }

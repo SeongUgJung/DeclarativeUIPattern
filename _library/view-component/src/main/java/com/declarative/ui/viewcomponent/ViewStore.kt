@@ -2,7 +2,14 @@ package com.declarative.ui.viewcomponent
 
 import androidx.compose.runtime.Composable
 
-abstract class ViewStore {
+interface ViewStore {
     @Composable
-    abstract fun draw()
+    fun draw()
+
+    companion object {
+        val EMPTY = object :ViewStore {
+            override fun draw() {
+            }
+        }
+    }
 }

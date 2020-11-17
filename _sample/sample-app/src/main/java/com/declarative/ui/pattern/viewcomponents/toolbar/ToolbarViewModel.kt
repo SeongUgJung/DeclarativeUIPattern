@@ -2,5 +2,9 @@ package com.declarative.ui.pattern.viewcomponents.toolbar
 
 import com.declarative.ui.viewcomponent.ViewModel
 
-class ToolbarViewModel(viewStore: ToolbarViewStore) : ViewModel(viewStore) {
+class ToolbarViewModel(override val viewStore: ToolbarViewStore) : ViewModel(viewStore) {
+
+    override fun initialize() {
+        viewStore.showBasicToolbar()
+    }
 }

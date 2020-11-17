@@ -1,12 +1,13 @@
 package com.declarative.ui.pattern.viewcomponents.toolbar
 
 import com.declarative.ui.viewcomponent.ViewComponent
+import com.declarative.ui.viewcomponent.ViewComponentHolder
 
 class ToolbarViewComponent(
     viewModel: ToolbarViewModel,
     viewRender: ToolbarViewRender,
-) : ViewComponent(viewModel, viewRender) {
+) : ViewComponent(viewModel, viewRender)
 
-    override fun isReady(): Boolean = true
-
-}
+class ToolbarViewComponentHolder(
+    viewComponent: ToolbarViewComponent
+) : ViewComponentHolder(viewComponent)
