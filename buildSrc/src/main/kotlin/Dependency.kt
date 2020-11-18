@@ -13,6 +13,7 @@ object Compose {
 
     const val ui = "androidx.compose.ui:ui:$version"
     const val runtime = "androidx.compose.runtime:runtime:$version"
+    const val livedata = "androidx.compose.runtime:runtime-livedata:$version"
     const val material = "androidx.compose.material:material:$version"
     const val uiTooling = "androidx.ui:ui-tooling:$version"
 }
@@ -46,5 +47,7 @@ object Dagger2 {
 
 object RxJava {
     const val version = "3.0.7"
+    const val androidVersion = "3.0.0"
     const val runtime = "io.reactivex.rxjava3:rxjava:$version"
+    const val android = "io.reactivex.rxjava3:rxandroid:$androidVersion"
 }

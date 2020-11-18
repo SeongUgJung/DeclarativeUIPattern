@@ -5,6 +5,7 @@ fun DependencyHandlerScope.composeComponent() {
     implementation(Compose.ui)
     implementation(Compose.material)
     implementation(Compose.uiTooling)
+    implementation(Compose.livedata)
 }
 
 private fun DependencyHandler.implementation(depName: String) =

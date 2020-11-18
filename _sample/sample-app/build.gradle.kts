@@ -45,6 +45,7 @@ dependencies {
     implementation(AndroidX.lifeCycleRuntimeKtx)
     implementation(Google.material)
     implementation(RxJava.runtime)
+    implementation(RxJava.android)
 
     implementation(Dagger2.hiltRuntime)
     kapt(Dagger2.hiltCompiler)

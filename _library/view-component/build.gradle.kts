@@ -24,6 +24,7 @@ android {
 
 dependencies {
     implementation(Kotlin.stdLib)
+    implementation(Compose.livedata)
     implementation(Compose.runtime)
     implementation(RxJava.runtime)
 }

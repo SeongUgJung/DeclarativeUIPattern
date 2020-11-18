@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layoutId
@@ -17,17 +19,16 @@ import com.declarative.ui.viewcomponent.ViewStore
 
 class BodyViewStore(val viewTrigger: ViewTrigger) : ViewStore {
 
-    private var cached: (@Composable () -> Unit) = {}
-    private val updator = MutableLiveData<Int>(0)
+    private var cached: MutableLiveData<(@Composable () -> Unit)> = MutableLiveData @Composable {}
 
     @Composable
     override fun draw() {
-        cached.invoke()
+        val observeAsState by cached.observeAsState()
+        observeAsState!!.invoke()
     }
 
     fun showBasicButton() {
-
-        cached = @Composable {
+        cached.value = @Composable {
             val rowId = "item"
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -48,6 +49,5 @@ class BodyViewStore(val viewTrigger: ViewTrigger) : ViewStore {
                 }
             }
         }
-
     }
 }

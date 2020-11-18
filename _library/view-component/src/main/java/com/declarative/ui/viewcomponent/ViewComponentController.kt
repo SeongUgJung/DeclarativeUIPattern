@@ -2,15 +2,17 @@ package com.declarative.ui.viewcomponent
 
 import androidx.compose.runtime.Composable
 
-open class ViewComponentController(vararg val holders: ViewComponentHolder) {
+open class ViewComponentController(vararg val childHolders: ViewComponentHolder) {
 
     fun deinitialize() {
-        holders.asSequence().onEach { it.deinitialize() }
+        childHolders.asSequence().onEach { it.deinitialize() }
     }
 
     @Composable
     fun render() {
-        holders.forEach { it.render() }
+        childHolders.forEach {
+            it.render()
+        }
     }
 
     companion object {

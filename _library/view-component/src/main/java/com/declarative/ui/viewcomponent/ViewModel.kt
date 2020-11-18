@@ -6,14 +6,11 @@ import io.reactivex.rxjava3.internal.functions.Functions
 
 abstract class ViewModel(open val viewStore: ViewStore) {
 
-    abstract fun initialize()
-    abstract fun deinitialize()
+    open fun initialize() {}
+    open fun deinitialize(){}
 
     companion object {
-        val EMPTY = object : ViewModel(ViewStore.EMPTY) {
-            override fun initialize() {}
-            override fun deinitialize() {}
-        }
+        val EMPTY = object : ViewModel(ViewStore.EMPTY) {}
     }
 }
 
@@ -22,7 +19,9 @@ abstract class RxViewModel(viewStore: ViewStore) : ViewModel(viewStore) {
     private var disposable: Disposable? = null
 
     override fun initialize() {
-        disposable = initCompletable().subscribe(Functions.EMPTY_ACTION, Functions.emptyConsumer())
+        disposable = initCompletable().subscribe(Functions.EMPTY_ACTION, {
+            it.printStackTrace()
+        })
     }
 
     abstract fun initCompletable(): Completable

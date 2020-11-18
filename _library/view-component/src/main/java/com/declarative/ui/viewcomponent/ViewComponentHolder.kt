@@ -18,8 +18,6 @@ abstract class ViewComponentHolder(
 
     @Composable
     fun render() {
-        if (viewComponent.isReady) {
-            viewComponent.render { controller.render() }
-        }
+        viewComponent.render { controller.render() }
     }
 }
