@@ -42,7 +42,9 @@ dependencies {
     implementation(Kotlin.stdLib)
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
+    implementation(AndroidX.lifeCycleRuntimeKtx)
     implementation(Google.material)
+    implementation(RxJava.runtime)
 
     implementation(Dagger2.hiltRuntime)
     kapt(Dagger2.hiltCompiler)
@@ -50,5 +52,6 @@ dependencies {
     composeComponent()
 
     implementation(project(":view-component"))
+    implementation(project(":view-stream"))
 
 }

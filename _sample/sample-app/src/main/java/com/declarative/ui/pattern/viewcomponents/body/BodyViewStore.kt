@@ -9,12 +9,16 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.MutableLiveData
+import com.declarative.ui.view.stream.ViewTrigger
 import com.declarative.ui.viewcomponent.ViewStore
 
-class BodyViewStore : ViewStore {
+class BodyViewStore(val viewTrigger: ViewTrigger) : ViewStore {
 
     private var cached: (@Composable () -> Unit) = {}
+    private val updator = MutableLiveData<Int>(0)
 
     @Composable
     override fun draw() {
@@ -22,10 +26,15 @@ class BodyViewStore : ViewStore {
     }
 
     fun showBasicButton() {
+
         cached = @Composable {
+            val rowId = "item"
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.clickable(onClick = {})
+                modifier = Modifier.clickable(onClick = {
+                    viewTrigger.clickable(rowId).click()
+                })
+                    .layoutId(rowId)
                     .padding(16.dp)
                     .fillMaxWidth()
             ) {

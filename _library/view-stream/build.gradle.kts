@@ -26,4 +26,5 @@ dependencies {
     implementation(Kotlin.stdLib)
     implementation(Compose.runtime)
     implementation(RxJava.runtime)
+
 }

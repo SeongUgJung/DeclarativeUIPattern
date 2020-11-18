@@ -43,3 +43,8 @@ object Dagger2 {
     const val hiltRuntime = "com.google.dagger:hilt-android:$hiltVersion"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:$hiltVersion"
 }
+
+object RxJava {
+    const val version = "3.0.7"
+    const val runtime = "io.reactivex.rxjava3:rxjava:$version"
+}

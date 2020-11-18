@@ -2,6 +2,7 @@ rootProject.name = "DeclarativeUIPattern"
 
 include("sample-app")
 include("view-component")
+include("view-stream")
 
 
 val modules = hashMapOf<String, String>()
