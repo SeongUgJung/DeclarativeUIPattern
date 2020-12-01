@@ -2,10 +2,8 @@ package com.declarative.ui.viewcomponent
 
 import androidx.compose.runtime.Composable
 
-abstract class ViewComponentHolder(
-    private val viewComponent: ViewComponent,
-    private val controller: ViewComponentController = ViewComponentController.EMPTY
-) {
+abstract class ViewComponentHolder(private val viewComponent: ViewComponent,
+                                   private val controller: ViewComponentController = ViewComponentController.EMPTY) {
 
     fun initialize() {
         viewComponent.isReady = true

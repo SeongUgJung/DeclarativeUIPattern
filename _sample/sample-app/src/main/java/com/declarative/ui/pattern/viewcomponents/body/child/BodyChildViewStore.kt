@@ -9,14 +9,20 @@ import com.declarative.ui.viewcomponent.ViewStore
 
 class BodyChildViewStore : ViewStore {
 
-    private var cached: MutableLiveData<(@Composable () -> Unit)> = MutableLiveData @Composable {
-        Text(text = "Hello World~!!!!")
+    private val cached: MutableLiveData<(@Composable () -> Unit)> = MutableLiveData @Composable {
     }
 
     @Composable
     override fun draw() {
         val observeAsState by cached.observeAsState()
         observeAsState!!.invoke()
+    }
+
+    fun showCounter(counter: MutableLiveData<Int>) {
+        cached.value = @Composable {
+            val counter1 by counter.observeAsState()
+            Text(text = "Hello World = ${counter1!!}")
+        }
     }
 
 }

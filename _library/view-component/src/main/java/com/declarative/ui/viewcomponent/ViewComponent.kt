@@ -5,13 +5,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.MutableLiveData
 
-abstract class ViewComponent(
-    private val viewModel: ViewModel = ViewModel.EMPTY,
-    private val viewRender: ViewRender = ViewRender.EMPTY
-) : RouterComponent {
+abstract class ViewComponent(private val viewModel: ViewModel = ViewModel.EMPTY,
+                             private val viewRender: ViewRender = ViewRender.EMPTY) : RouterComponent {
 
     internal var cached: MutableLiveData<Boolean> = MutableLiveData(false)
-
 
     override var isReady: Boolean = false
         set(value) {

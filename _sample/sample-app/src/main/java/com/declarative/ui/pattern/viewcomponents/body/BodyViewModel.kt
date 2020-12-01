@@ -7,11 +7,9 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.TimeUnit
 
-class BodyViewModel(
-    override val viewStore: BodyViewStore,
-    private val viewStream: ViewStream,
-    private val interactor: BodyViewInteractor
-) : RxViewModel(viewStore) {
+class BodyViewModel(override val viewStore: BodyViewStore,
+                    private val viewStream: ViewStream,
+                    private val interactor: BodyViewInteractor) : RxViewModel(viewStore) {
 
     override fun initCompletable(): Completable {
         return Observable.mergeArray(showScreen(), observeClick())
