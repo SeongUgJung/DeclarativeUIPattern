@@ -49,6 +49,8 @@ object Dagger2 {
     const val hiltGradle = "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
     const val hiltRuntime = "com.google.dagger:hilt-android:$hiltVersion"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:$hiltVersion"
+
+    const val javaxInject = "javax.inject:javax.inject:1"
 }
 
 object RxJava {

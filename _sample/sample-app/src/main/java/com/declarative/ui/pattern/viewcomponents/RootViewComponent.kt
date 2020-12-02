@@ -9,6 +9,7 @@ import com.declarative.ui.pattern.viewcomponents.toolbar.ToolbarViewComponentHol
 import com.declarative.ui.viewcomponent.ViewComponent
 import com.declarative.ui.viewcomponent.ViewComponentController
 import com.declarative.ui.viewcomponent.ViewComponentHolder
+import javax.inject.Provider
 
 class RootViewComponent() : ViewComponent() {
 
@@ -26,14 +27,14 @@ class RootViewComponent() : ViewComponent() {
 }
 
 class RootViewComponentController(
-    toolbarViewComponentHolder: ToolbarViewComponentHolder,
-    bodyViewComponentHolder: BodyViewComponentHolder
+    toolbarViewComponentHolder: Provider<ToolbarViewComponentHolder>,
+    bodyViewComponentHolder: Provider<BodyViewComponentHolder>
 ) :
-    ViewComponentController(toolbarViewComponentHolder, bodyViewComponentHolder) {
+    ViewComponentController() {
 
     init {
-        toolbarViewComponentHolder.initialize()
-        bodyViewComponentHolder.initialize()
+        activate(toolbarViewComponentHolder)
+        activate(bodyViewComponentHolder)
     }
 
 }

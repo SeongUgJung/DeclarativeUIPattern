@@ -4,6 +4,7 @@ import com.declarative.ui.pattern.viewcomponents.body.child.BodyChildViewCompone
 import com.declarative.ui.viewcomponent.ViewComponent
 import com.declarative.ui.viewcomponent.ViewComponentController
 import com.declarative.ui.viewcomponent.ViewComponentHolder
+import javax.inject.Provider
 
 class BodyViewComponent(
     viewModel: BodyViewModel,
@@ -15,14 +16,14 @@ class BodyViewComponentHolder(
     bodyViewComponentController: BodyViewComponentController
 ) : ViewComponentHolder(bodyViewComponent, bodyViewComponentController)
 
-class BodyViewComponentController(private val bodyChildViewComponentHolder: BodyChildViewComponentHolder) :
-    ViewComponentController(bodyChildViewComponentHolder) {
+class BodyViewComponentController(private val bodyChildViewComponentHolder: Provider<BodyChildViewComponentHolder>) :
+    ViewComponentController() {
     fun initChild() {
-        bodyChildViewComponentHolder.initialize()
+        activate(bodyChildViewComponentHolder)
     }
 
     fun deinitChild() {
-        bodyChildViewComponentHolder.deinitialize()
+        deactivate(bodyChildViewComponentHolder)
     }
 
 }

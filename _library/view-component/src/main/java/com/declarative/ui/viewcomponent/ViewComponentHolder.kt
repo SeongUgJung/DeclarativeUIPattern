@@ -11,7 +11,7 @@ abstract class ViewComponentHolder(private val viewComponent: ViewComponent,
 
     fun deinitialize() {
         viewComponent.isReady = false
-        controller.deinitialize()
+        controller.deactivateAll()
     }
 
     @Composable

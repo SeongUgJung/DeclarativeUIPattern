@@ -27,4 +27,6 @@ dependencies {
     implementation(Compose.livedata)
     implementation(Compose.runtime)
     implementation(RxJava.runtime)
+
+    compileOnly(Dagger2.javaxInject)
 }

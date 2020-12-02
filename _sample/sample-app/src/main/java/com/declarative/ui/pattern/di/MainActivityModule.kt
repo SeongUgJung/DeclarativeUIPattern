@@ -28,70 +28,43 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.scopes.ActivityScoped
+import javax.inject.Provider
 
 @Module
 @InstallIn(ActivityComponent::class)
 object MainActivityModule {
 
     @Provides
-    @ActivityScoped
     fun toolbarHolder(): ToolbarViewComponentHolder {
         val toolbarViewStore = ToolbarViewStore()
-        val toolbarViewComponent = ToolbarViewComponent(
-            ToolbarViewModel(toolbarViewStore),
-            ToolbarViewRender(toolbarViewStore)
-        )
+        val toolbarViewComponent = ToolbarViewComponent(ToolbarViewModel(toolbarViewStore), ToolbarViewRender(toolbarViewStore))
         return ToolbarViewComponentHolder(toolbarViewComponent)
     }
 
     @Provides
-    @ActivityScoped
     fun bodyChildHolder(): BodyChildViewComponentHolder {
         val viewStore = BodyChildViewStore()
-        return BodyChildViewComponentHolder(
-            BodyChildViewComponent(
-                BodyChildViewModel(viewStore),
-                BodyChildViewRender(viewStore
-                )
-            )
-                                           )
+        return BodyChildViewComponentHolder(BodyChildViewComponent(BodyChildViewModel(viewStore), BodyChildViewRender(viewStore)))
     }
 
     @Provides
-    @ActivityScoped
-    fun bodyHolder(
-        viewStream: ViewStream,
-        viewTrigger: ViewTrigger,
-        bodyChildViewComponentHolder: BodyChildViewComponentHolder
-    ): BodyViewComponentHolder {
+    fun bodyHolder(viewStream: ViewStream,
+                   viewTrigger: ViewTrigger,
+                   bodyChildViewComponentHolder: Provider<BodyChildViewComponentHolder>): BodyViewComponentHolder {
         val bodyViewStore = BodyViewStore(viewTrigger)
         val bodyViewComponentController = BodyViewComponentController(bodyChildViewComponentHolder)
-        val bodyViewComponent = BodyViewComponent(
-            BodyViewModel(
-                bodyViewStore,
-                viewStream,
-                BodyViewInteractor(bodyViewComponentController)
-            ),
-            BodyViewRender(bodyViewStore)
-        )
+        val bodyViewComponent = BodyViewComponent(BodyViewModel(bodyViewStore, viewStream, BodyViewInteractor(bodyViewComponentController)),
+                                                  BodyViewRender(bodyViewStore))
         return BodyViewComponentHolder(bodyViewComponent, bodyViewComponentController)
     }
 
     @Provides
     @ActivityScoped
-    fun rootHolder(
-        toolbarViewComponentHolder: ToolbarViewComponentHolder,
-        bodyViewComponentHolder: BodyViewComponentHolder
-    ): RootViewComponentHolder {
+    fun rootHolder(toolbarViewComponentHolder: Provider<ToolbarViewComponentHolder>,
+                   bodyViewComponentHolder: Provider<BodyViewComponentHolder>): RootViewComponentHolder {
         val rootViewComponent = RootViewComponent()
 
-        return RootViewComponentHolder(
-            RootViewComponentController(
-                toolbarViewComponentHolder,
-                bodyViewComponentHolder
-            ), rootViewComponent
-        )
-
+        return RootViewComponentHolder(RootViewComponentController(toolbarViewComponentHolder, bodyViewComponentHolder), rootViewComponent)
 
     }
 
